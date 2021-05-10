@@ -1,0 +1,19 @@
+{
+  "name": "remote-jobs-grooming",
+  "version": "0.1.0",
+  "description": "Simple URL grooming",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "remote",
+    "jobs",
+    "grooming"
+  ],
+  "author": "Leo Dutra <leodutra.br@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "got": "^11.8.2"
+  }
+}
