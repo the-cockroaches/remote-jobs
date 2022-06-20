@@ -1,4 +1,4 @@
-use futures::future::join_all;
+use futures::{stream, StreamExt};
 use itertools::Itertools;
 use regex::Regex;
 use reqwest::redirect::Policy;
@@ -7,6 +7,8 @@ use std::collections::HashSet;
 use std::fs::File;
 use std::io::prelude::*;
 use std::time::Instant;
+
+const PARALLEL_REQUESTS: usize = 10;
 
 fn chop_url(url: &str) -> String {
     let re = Regex::new(r"(https?)://(www)?.?(.+)").unwrap();
@@ -33,13 +35,17 @@ fn build_url_variations(url: &str) -> Vec<String> {
     variations
 }
 
-async fn hit_url(url: &str) -> Result<String, reqwest::Error> {
+async fn hit_url<'a>(url: &str) -> Result<String, reqwest::Error> {
     println!("hitting {}", url);
     let now = Instant::now();
+    let url_local = url.to_owned();
     let client = Client::builder()
-        .redirect(Policy::custom(|attempt| {
-            let url = attempt.url().to_string();
-            println!("redirecting to {}", url);
+        .redirect(Policy::custom(move |attempt| {
+            println!(
+                "redirecting to {} from {}",
+                attempt.url().to_string(),
+                url_local
+            );
             attempt.follow()
         }))
         .build()?;
@@ -71,6 +77,98 @@ async fn check_url(url: &str) -> CheckedUrl {
         url: url.to_owned(),
     }
 }
+
+
+
+#[tokio::main]
+async fn main() -> std::io::Result<()> {
+    let mut file = File::open("../../job-links.txt")?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    let urls = contents
+        .split('\n')
+        .into_iter()
+        .map(|x| x.trim().to_string())
+        .filter(|x| !x.is_empty())
+        .unique()
+        .collect::<Vec<String>>();
+
+    let results = stream::iter(urls)
+        .map(|url| tokio::spawn(async move { 
+            check_url(&url).await 
+        }))
+        .buffer_unordered(PARALLEL_REQUESTS);
+
+    let valid_urls = HashSet::new();
+    let invalid_urls = HashSet::new();
+
+    struct UrlSets {
+        valid_urls: HashSet<String>,
+        invalid_urls: HashSet<String>,
+    }
+
+    let UrlSets { valid_urls, invalid_urls } = results
+        .fold(UrlSets{ valid_urls, invalid_urls }, |mut acc, result| async {
+            let UrlSets { valid_urls, invalid_urls } = &mut acc;
+            match result {
+                Ok(checked) => {
+                    if checked.is_valid {
+                        valid_urls.insert(checked.url.clone());
+                    } else {
+                        invalid_urls.insert(checked.url.clone());
+                    }
+                },
+                Err(e) => eprintln!("Got a tokio::JoinError: {}", e),
+            }
+            acc
+        })
+        .await;
+
+    println!("valid urls:\n{}", valid_urls.iter().join("\n"));
+    println!("invalid urls:\n{}", invalid_urls.iter().join("\n"));
+
+    Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_chop_url() {
+        assert_eq!(chop_url("https://www.google.com"), "google.com");
+        assert_eq!(chop_url("https://www.google.com/"), "google.com/");
+        assert_eq!(
+            chop_url("https://www.google.com/search?q=rust&p=1"),
+            "google.com/search?q=rust&p=1"
+        );
+    }
+
+    #[test]
+    fn test_build_url_variations() {
+        assert_eq!(
+            build_url_variations("https://www.google.com"),
+            vec![
+                "https://google.com",
+                "http://google.com",
+                "https://www.google.com",
+                "http://www.google.com",
+            ]
+        );
+        assert_eq!(
+            build_url_variations("https://www.google.com/search?q=rust&p=1"),
+            vec![
+                "https://google.com/search?q=rust&p=1",
+                "http://google.com/search?q=rust&p=1",
+                "https://www.google.com/search?q=rust&p=1",
+                "http://www.google.com/search?q=rust&p=1",
+            ]
+        );
+    }
+}
+
+
+/*
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
@@ -140,3 +238,5 @@ mod tests {
         );
     }
 }
+
+*/
