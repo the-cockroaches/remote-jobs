@@ -11,7 +11,7 @@ use std::time::Instant;
 const PARALLEL_REQUESTS: usize = 10;
 
 fn chop_url(url: &str) -> String {
-    let re = Regex::new(r"(https?)://(www)?.?(.+)").unwrap();
+    let re = Regex::new(r"(https?)://(www\.)?(.+)").unwrap();
     let caps = re.captures(url);
     if let Some(caps) = caps {
         caps.get(3).unwrap().as_str().to_string()
@@ -147,12 +147,12 @@ mod tests {
     #[test]
     fn test_build_url_variations() {
         assert_eq!(
-            build_url_variations("https://www.google.com"),
+            build_url_variations("https://drupaljedi.com"),
             vec![
-                "https://google.com",
-                "http://google.com",
-                "https://www.google.com",
-                "http://www.google.com",
+                "https://drupaljedi.com",
+                "http://drupaljedi.com",
+                "https://www.drupaljedi.com",
+                "http://www.drupaljedi.com",
             ]
         );
         assert_eq!(
