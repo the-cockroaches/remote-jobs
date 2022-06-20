@@ -43,7 +43,7 @@ async fn hit_url<'a>(url: &str) -> Result<String, reqwest::Error> {
         .redirect(Policy::custom(move |attempt| {
             println!(
                 "redirecting to {} from {}",
-                attempt.url().to_string(),
+                attempt.url().to_string(), // TODO: use attempt url as return?
                 url_local
             );
             attempt.follow()
