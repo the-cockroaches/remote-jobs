@@ -1,51 +1,97 @@
-const got = require('got')
-const entries = require('../entries.json')
+import fs from 'fs'
+import got from 'got'
 
-const DEFAULT_TIMEOUT = 15000
-
+const DEFAULT_TIMEOUT = 30000
 const chopUrl = url => {
-    const chopped = /(https?):\/\/(www)?\.?(.+)/gim.exec(url)
+    const chopped = /(https?):\/\/(www)?\.?(.+)/gim.exec(url.trim())
     return (chopped && chopped[3]) || url
 }
 
-const createPossibleUrls = partialUrl => [
-    `https://${partialUrl}`,
-    `http://${partialUrl}`,
-    `https://www.${partialUrl}`,
-    `http://www.${partialUrl}`,
-    partialUrl, // AS IS
-]
+const buildURLVariations = url => {
+    const partialUrl = chopUrl(url)
+    // NOTE: order matters here
+    const variations = [
+        `https://${partialUrl}`,
+        `http://${partialUrl}`,
+        `https://www.${partialUrl}`,
+        `http://www.${partialUrl}`,
+    ]
+    if (!variations.find(x => x === url)) {
+        variations.push(url) // AS IS
+    }
+    return variations
+}
 
-const checkUrlStatus = async url => {
-    console.log(`Checking url "${url}"`)
-    try {
-        await got(url, { timeout: DEFAULT_TIMEOUT })
-        return url
-    } catch (error) {
-        // console.error(`Error for url "${url}:"`, error)
-        return null
+class Progress {
+    #total = 0
+    #completed = 0
+
+    add() {
+        this.#total++
+    }
+    complete() {
+        this.#completed++
+    }
+    get percent() {
+        return this.#total ? (this.#completed / this.#total) * 100 : 0
     }
 }
 
-const selectFirstValidUrl =  urls => {
-    const checkedUrls = await Promise.all(urls.map(checkUrlStatus))
-    return checkedUrls.find(x => x)
+let hitCount = 0
+
+const hitUrl = progress => async url => {
+    progress.add()
+    const time = Date.now()
+    try {
+        console.log(`hitCount: ${++hitCount} - hitting ${url}`)
+        await got(url, { timeout: { response: DEFAULT_TIMEOUT } })
+        return url
+    } catch (error) {
+        console.error(error.toString(), `error for url "${url}"`)
+        return null
+    } finally {
+        progress.complete()
+        console.log(
+            `${progress.percent.toFixed(2)}% - ${Math.round((Date.now() - time) / 1000)}s - "${url}"`
+        )
+    }
 }
 
-async function sanitizeAndOrderURLs(urls) {
-    const choppedUrls = urls.map(chopUrl)
-    const possibleUrlSets = choppedUrls.sort().map(createPossibleUrls)
-    const possibleValidUrls = await Promise.all(possibleUrlSets.map(selectFirstValidUrl))
-    return possibleValidUrls.filter(x => x)
+const checkUrl = progress => async url => {
+    progress.add()
+    const variations = buildURLVariations(url)
+    const hitUrls = await Promise.all(variations.map(hitUrl(progress)))
+    const validVariation = hitUrls.find(Boolean)
+    progress.complete()
+    return { isValid: !!validVariation, url: validVariation, originalUrl: url }
 }
 
 async function main() {
-    const sanitizedUrls = await sanitizeAndOrderURLs(entries)
-    console.log(sanitizedUrls)
-    console.log(`${entries.length} entries`)
-    console.log(`${sanitizedUrls.length} valid urls`)
+    const data = fs.readFileSync('../job-links.txt').toString()
+    const urls = data
+        .split(/\r?\n/)
+        .map(x => x.trim())
+        .filter(Boolean)
+        .sort()
+
+    const progress = new Progress()
+    const urlStatusList = await Promise.all(urls.map(checkUrl(progress)))
+
+    const validUrls = new Set()
+    const invalidUrls = new Set()
+
+    urlStatusList.forEach(({ isValid, url, originalUrl }) => {
+        if (isValid) {
+            validUrls.add(url)
+        } else {
+            invalidUrls.add(originalUrl)
+        }
+    })
+
+    console.log('valid urls', validUrls)
+    console.log('invalid urls', invalidUrls)
+
+    fs.writeFileSync('../groomed-links.txt', Array.from(validUrls).sort().join('\n'))
 }
-main().catch(err => {
-    console.error(err)
-    process.exit(1)
-})
+
+await main()
