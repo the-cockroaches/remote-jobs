@@ -126,8 +126,8 @@ async fn main() -> std::io::Result<()> {
         })
         .await;
 
-    println!("valid urls:\n{}", valid_urls.iter().sorted().join("\n"));
-    println!("invalid urls:\n{}", invalid_urls.iter().sorted().join("\n"));
+    println!("valid urls:\n{}", valid_urls.iter().sorted().dedup().join("\n"));
+    println!("invalid urls:\n{}", invalid_urls.iter().sorted().dedup().join("\n"));
 
     Ok(())
 }
