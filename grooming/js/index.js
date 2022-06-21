@@ -45,10 +45,10 @@ const hitUrl = progress => async url => {
     try {
         console.log(`hitCount: ${++hitCount} - hitting ${url}`)
         await got(url, { timeout: { response: DEFAULT_TIMEOUT } })
-        return url
+        return true
     } catch (error) {
         console.error(error.toString(), `error for url "${url}"`)
-        return null
+        return false
     } finally {
         progress.complete()
         console.log(
@@ -60,14 +60,19 @@ const hitUrl = progress => async url => {
 const checkUrl = progress => async url => {
     progress.add()
     const variations = buildURLVariations(url)
-    const hitUrls = await Promise.all(variations.map(hitUrl(progress)))
-    const validVariation = hitUrls.find(Boolean)
+    for (const variation of variations) {
+        const isValid = await hitUrl(progress)(variation)
+        if (isValid) {
+            progress.complete()
+            return { isValid, url: variation, originalUrl: url }
+        }
+    }
     progress.complete()
-    return { isValid: !!validVariation, url: validVariation, originalUrl: url }
+    return { isValid: false, url: null, originalUrl: url }
 }
 
 async function main() {
-    const data = fs.readFileSync('../job-links.txt').toString()
+    const data = fs.readFileSync('../../job-links.txt').toString()
     const urls = data
         .split(/\r?\n/)
         .map(x => x.trim())
@@ -91,7 +96,7 @@ async function main() {
     console.log('valid urls', validUrls)
     console.log('invalid urls', invalidUrls)
 
-    fs.writeFileSync('../groomed-links.txt', Array.from(validUrls).sort().join('\n'))
+    fs.writeFileSync('../../groomed-links.txt', Array.from(validUrls).sort().join('\n'))
 }
 
 await main()
