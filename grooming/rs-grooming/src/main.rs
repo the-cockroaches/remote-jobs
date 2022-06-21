@@ -7,6 +7,7 @@ use std::collections::HashSet;
 use std::fs::File;
 use std::io::prelude::*;
 use std::time::Instant;
+use std::time::Duration;
 
 const PARALLEL_REQUESTS: usize = 10;
 
@@ -48,6 +49,7 @@ async fn hit_url<'a>(url: &str) -> Result<String, reqwest::Error> {
             );
             attempt.follow()
         }))
+        .timeout(Duration::from_secs(120))
         .build()?;
 
     client.get(url).send().await?;
