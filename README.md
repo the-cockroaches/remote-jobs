@@ -6,12 +6,11 @@ Repository for known remote job opportunities
 
 http://achievetestprep.com/careers  
 http://aivitex.de/  
-http://animalz.co  
-http://bergamot.io/  
+https://animalz.co/join-us/  
 http://betterup.co  
-http://bill.com/  
+https://bill.com/about-us/jobs  
 http://bulutyazilim.com/  
-http://cartstack.com/  
+https://cartstack.com/careers/  
 http://core-apps.com/  
 http://edify.cr/  
 http://eventbritecareers.com/jobs/search?page=1&country_codes%5B%5D=ES&cities%5B%5D=Remote&query=  
