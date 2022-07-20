@@ -4,6 +4,11 @@ Repository for known remote job opportunities
 
 ## Job boards
 
+https://toptal.com/  
+https://web3.career/  
+https://x-team.com/  
+https://gun.io/  
+
 http://achievetestprep.com/careers  
 http://aivitex.de/  
 https://animalz.co/join-us/  
@@ -434,8 +439,7 @@ https://grnh.se/b7d3076c3us
 https://groovehq.com  
 https://grubhub.com/  
 https://gruntwork.io/  
-https://gruntwork.io/careers/  
-https://gun.io/  
+https://gruntwork.io/careers/   
 https://guru.com/  
 https://gusto.com/  
 https://hackerearth.com/  
@@ -944,7 +948,6 @@ https://tinybird.co/about#join-us
 https://tipe.io  
 https://toggl.com/  
 https://toggl.com/jobs/  
-https://toptal.com/  
 https://toptal.com/developers/hourly-rate  
 https://transloadit.com/  
 https://travis-ci.org/  
@@ -1027,7 +1030,6 @@ https://www.outsourcingdev.com/
 https://www.rocketpower.io/  
 https://www.thaloz.com/  
 https://www.ttas.pl/  
-https://x-team.com/  
 https://xapo.com/  
 https://xapo.com/en/  
 https://xogito.com/careers/  
