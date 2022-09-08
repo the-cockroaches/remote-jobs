@@ -254,6 +254,7 @@ https://corgibytes.com
 https://corp.betable.com/  
 https://corporate.payu.com  
 https://coursera.org/  
+https://www.create.xyz/  
 https://crewscale.com/  
 https://crossover.com  
 https://crossover.com/#index  
@@ -1081,6 +1082,7 @@ https://www.linkedin.com/jobs/redradix-jobs-worldwide/
 https://www.linkedin.com/jobs/remote-jobs/  
 https://www.linkedin.com/jobs/search/?f_C=1487350&f_CR=105646813&f_WT=2&geoId=92000000&sortBy=R  
 https://www.linkedin.com/school/aba-english/jobs/  
+
 
 ## Great additional references
 
