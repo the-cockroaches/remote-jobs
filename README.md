@@ -7,6 +7,7 @@ Repository for known remote job opportunities
 https://toptal.com/  
 https://web3.career/  
 https://x-team.com/  
+https://www.kraken.com/careers
 https://gun.io/  
 
 http://achievetestprep.com/careers  
