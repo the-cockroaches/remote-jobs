@@ -9,6 +9,7 @@ https://web3.career/
 https://x-team.com/  
 https://www.kraken.com/careers  
 https://gun.io/  
+https://teamit.com/  
 
 http://achievetestprep.com/careers  
 http://aivitex.de/  
