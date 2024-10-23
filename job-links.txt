@@ -1,10 +1,7 @@
-https://awwcor.com/jobboard
-https://web3.career/ 
-https://www.kraken.com/careers
+
 http://10up.com/careers/
 http://aboutus.audiense.com/careers
 http://bountyone.io/
-https://teamit.com/
 http://freela.io/
 http://hnhiring.me/
 http://lev-interactive.com/
@@ -85,6 +82,7 @@ https://auth0.com/jobs
 https://authenticjobs.com/?search_location=remote
 https://automattic.com/
 https://automattic.com/work-with-us/
+https://awwcor.com/jobboard
 https://axelerant.com/
 https://axios.com/
 https://azumo.com/
@@ -128,6 +126,7 @@ https://cabify.com/es/jobs
 https://calamari.io/
 https://canonical.com/
 https://cardsagainsthumanity.com/
+https://career.proxify.io/
 https://careers-redhat.icims.com/jobs/search?ss=1&searchLocation=12920--Remote
 https://careers.brainly.com/open-positions/
 https://careers.deviget.com/
@@ -137,6 +136,7 @@ https://careers.hotjar.com/
 https://careers.hubuc.com/
 https://careers.kickbacksystems.com
 https://careers.streamloots.com/
+https://careers.thefunctionary.com/
 https://careers.vmware.com/location/jobs?country=ESP%7CSpain
 https://careers.worldmobile.io/?&location=Barcelona%2C%20ES#positions
 https://caremessage.org/careers/
@@ -159,6 +159,7 @@ https://codestunts.com/
 https://codi.coop/en/about-us/busquem-socies/
 https://cofense.com
 https://colivre.coop.br/
+https://commit.dev/
 https://commit.dev/for-engineers/
 https://consensys.net/
 https://conversio.com/
@@ -175,6 +176,7 @@ https://cryptocurrencyjobs.co/remote/
 https://cryptojobslist.com/remote
 https://cueup.io/
 https://customer.io
+https://customer.io/careers/
 https://cyberwhale.tech
 https://dailyremote.com
 https://dailyremote.com/
@@ -214,6 +216,7 @@ https://epam.com/
 https://episource.com
 https://evelo.com
 https://evilmartians.com/
+https://evolvesquads.com/
 https://evrone.com/
 https://exceptionly.com/pricing/
 https://eyeo.com/
@@ -256,6 +259,9 @@ https://github.com/
 https://github.com/about/careers
 https://github.com/blarlo/remote-job-offers
 https://github.com/dewocracy/careers
+https://github.com/diegopolido/remote-jobs-compilation-of-compilation
+https://github.com/lerrua/remote-jobs-brazil
+https://github.com/yanirs/established-remote
 https://gitprime.com/
 https://glennwebsitedesign.com/
 https://global-redhat.icims.com/jobs/search?ss=1&searchLocation=13549--Remote
@@ -294,6 +300,7 @@ https://hugo.events
 https://husldigital.com
 https://hyperiondev.com/jobs
 https://hypothes.is
+https://hyqoo.com/
 https://idonethis.com/
 https://ifsight.com/
 https://implisense.com/
@@ -336,8 +343,11 @@ https://jobs.yougov.com/jobs
 https://jobspresso.co/
 https://jsremotely.com/
 https://justjoin.it
+https://justjoin.it/
 https://justremote.co
 https://kaggle.com/
+https://kake.co/
+https://kake.co/jobs
 https://kea.ai
 https://keen.io/
 https://kiprosh.com
@@ -352,6 +362,7 @@ https://labs.madisoft.it/
 https://lambertlabs.com/
 https://landing.jobs/jobs?&fr=true
 https://landing.jobs/jobs?&hd=false&t_co=false&t_st=false
+https://landing.jobs/jobs?page=1&hd=false&t_co=false&t_st=false
 https://landing.jobs/offers
 https://larajobs.com/?location=&remote=1
 https://learnlife.com/work-with-us
@@ -380,6 +391,7 @@ https://meetedgar.com/
 https://memberful.com
 https://memory.ai/
 https://merico.dev/
+https://metadata.io/
 https://metalab.co
 https://metamask.io
 https://mindera.com/
@@ -457,6 +469,7 @@ https://remote.co/remote-jobs/
 https://remote.com
 https://remote.com/search
 https://remote.works-hub.com
+https://remote3.co/
 https://remote4me.com/
 https://remotebase.com
 https://remotecrew.io
@@ -524,6 +537,7 @@ https://talent.prediktive.com/
 https://taplytics.com/
 https://taskade.com/
 https://taxscouts.es/unete-al-equipo/
+https://teamit.com/
 https://teamtreehouse.com/
 https://tech.parkassist.com
 https://teleport.org/
@@ -571,9 +585,12 @@ https://vshn.ch/jobs
 https://vuejobs.com/
 https://wallethub.com/jobs/
 https://weareuncapped.com/
+https://web3.career/
 https://web3.career/remote-jobs
 https://webdevstudios.com/
 https://webflow-production.slite.com/jobs
+https://wellfound.com/
+https://wellfound.com/jobs
 https://wemake.services/
 https://weworkremotely.com/
 https://weworkremotely.com/top-remote-companies
@@ -582,14 +599,17 @@ https://whoishiring.io/#!/search/19.41/-43.14/2/?remote=true
 https://wikimediafoundation.org
 https://wikimediafoundation.org/
 https://wildbit.com/
+https://willdom.com/
 https://workaline.com/
 https://working-nomads.com/
 https://workremotely.io/
 https://wp-media.me/
+https://writing.neighborhoodstudios.com/goodbye-linkedin-a-new-era-of-hiring-startups-has-arrived-6d3817933f8e
 https://wrk.ist/
 https://www.15five.com
 https://www.17hats.com/
 https://www.1password.com
+https://www.a.team/
 https://www.abiturma.de/
 https://www.ably.io/
 https://www.abstractapi.com
@@ -638,6 +658,8 @@ https://www.bravostudio.app/careers
 https://www.brightfunds.org
 https://www.britecore.com/careers
 https://www.buysellads.com/
+https://www.calyptus.co/
+https://www.calyptus.co/points
 https://www.canonical.com/
 https://www.capchase.com/
 https://www.capitalonecareers.com/tech
@@ -671,6 +693,7 @@ https://www.convert.com
 https://www.copado.com/careers/#openpositions
 https://www.core-apps.com/
 https://www.coursera.org/
+https://www.create.xyz/
 https://www.crewscale.com/
 https://www.crossover.com
 https://www.crossover.com/#index
@@ -818,6 +841,7 @@ https://www.klaviyo.com/
 https://www.knack.com
 https://www.komoot.com
 https://www.kraken.com/
+https://www.kraken.com/careers
 https://www.lambdaschool.com/
 https://www.laterpay.net/
 https://www.leadershipsuccess.co/
@@ -851,8 +875,10 @@ https://www.linkedin.com/company/tbscg/jobs/
 https://www.linkedin.com/company/tot-em/jobs/
 https://www.linkedin.com/company/trialing/jobs/
 https://www.linkedin.com/company/tribaldata/jobs/
+https://www.linkedin.com/in/leobr/details/experience/edit/forms/2328422648/?profileFormEntryPoint=PROFILE_SECTION
 https://www.linkedin.com/jobs/redradix-jobs-worldwide/
 https://www.linkedin.com/jobs/remote-jobs/
+https://www.linkedin.com/jobs/rust-remote-jobs/?currentJobId=3797456295
 https://www.linkedin.com/jobs/search/?f_C=1487350&f_CR=105646813&f_WT=2&geoId=92000000&sortBy=R
 https://www.linkedin.com/school/aba-english/jobs/
 https://www.linuxfoundation.org/
@@ -874,6 +900,7 @@ https://www.marketade.com
 https://www.matildaexp.com/
 https://www.mediacurrent.com/
 https://www.mediavine.com/
+https://www.micro1.ai/
 https://www.microsoft.com/
 https://www.mixcloud.com/
 https://www.mixmax.com/careers
@@ -924,6 +951,7 @@ https://www.pccomponentes.com/trabaja-con-nosotros
 https://www.people-doc.com
 https://www.percona.com
 https://www.percona.com/
+https://www.pinecone.io/careers?id=5596007003
 https://www.plainconcepts.com/careers/
 https://www.pleo.io/
 https://www.plytix.com/careers
@@ -948,6 +976,7 @@ https://www.react-jobs.com
 https://www.reactiveops.com
 https://www.readytal.com/
 https://www.real-digital.de
+https://www.realworkfromanywhere.com/
 https://www.rebelmouse.com/
 https://www.reboot.studio/
 https://www.redditinc.com
@@ -986,6 +1015,7 @@ https://www.skipthedrive.com/
 https://www.skyrocketventures.com/
 https://www.smartcash.cc/
 https://www.smugmug.com/
+https://www.softensity.com/careers/
 https://www.sonatype.com/
 https://www.soostone.com/
 https://www.soshace.com/
@@ -995,7 +1025,9 @@ https://www.squareup.com/
 https://www.stairlin.com/
 https://www.status.im/
 https://www.stickermule.com/
+https://www.stickermule.com/br?utm_source=google&utm_medium=cpc&src=GOOG&cid=425842687&gad_source=1&gclid=CjwKCAiAkp6tBhB5EiwANTCx1I0k8msxZo01-ads_-BkX9at7bEJ6WrrrWgbwJ74zQdkxpzsonjtJBoC4LcQAvD_BwE
 https://www.stitchfix.com
+https://www.stridelearning.com/careers.html
 https://www.superside.com/
 https://www.surevine.com/
 https://www.suse.com/
@@ -1003,8 +1035,10 @@ https://www.sutherlandcloudsource.com
 https://www.sweetrush.com
 https://www.swimlane.com
 https://www.sysdig.org/
+https://www.talentinternational.com/
 https://www.tatvasoft.com/
 https://www.taxjar.com
+https://www.tealhq.com/
 https://www.teamflow.com
 https://www.teamsnap.com
 https://www.teamultra.net/
@@ -1054,12 +1088,14 @@ https://www.wellsfargo.com/
 https://www.welovegolang.com/
 https://www.whitecapseo.com/
 https://www.wikihow.com/wikiHow:About-wikiHow
+https://www.wipro.com/
 https://www.wizeline.com/
 https://www.wolfram.com
 https://www.wombatsecurity.com/
 https://www.workana.com/
 https://www.workingnomads.co/jobs
 https://www.workshape.io/
+https://www.worky.tech/
 https://www.xogito.com/careers/
 https://www.yazio.com/en/jobs
 https://www.yodo1.com/en/
@@ -1069,6 +1105,7 @@ https://www.zendesk.com/jobs/remote/
 https://www.ziprecruiter.com/Jobs/Remote
 https://www.zup.com.br/
 https://www.zyte.com/jobs/
+https://www3.tjrj.jus.br/consultaprocessual/#/consultapublica#porNumero
 https://x-team.com/
 https://xapo.com/
 https://xapo.com/en/
@@ -1084,5 +1121,3 @@ https://zeit.io/
 https://zignaly.io/
 https://zip.co/us/
 https://zipdev.com/careers/
-https://www.wipro.com/
-https://www.create.xyz/
