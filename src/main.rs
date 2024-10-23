@@ -6,8 +6,8 @@ use reqwest::Client;
 use std::collections::HashSet;
 use std::fs::File;
 use std::io::prelude::*;
-use std::time::Instant;
 use std::time::Duration;
+use std::time::Instant;
 
 const PARALLEL_REQUESTS: usize = 10;
 
@@ -26,8 +26,8 @@ fn build_url_variations(url: &str) -> Vec<String> {
     // NOTE: order matters here
     let mut variations = vec![
         format!("https://{}", partial_url),
-        format!("http://{}", partial_url),
         format!("https://www.{}", partial_url),
+        format!("http://{}", partial_url),
         format!("http://www.{}", partial_url),
     ];
     if !variations.contains(&url.to_string()) {
@@ -80,25 +80,27 @@ async fn check_url(url: &str) -> CheckedUrl {
     }
 }
 
-
-
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
-    let mut file = File::open("../../job-links.txt")?;
+    let mut file = File::open("job-links.txt")?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let urls = contents
         .split('\n')
         .into_iter()
-        .map(|x| x.trim().to_string())
-        .filter(|x| !x.is_empty())
+        .filter_map(|line| {
+            let trimmed = line.trim();
+            if trimmed.is_empty() {
+                None
+            } else {
+                Some(trimmed.to_owned())
+            }
+        })
         .unique()
         .collect::<Vec<String>>();
 
     let results = stream::iter(urls)
-        .map(|url| tokio::spawn(async move { 
-            check_url(&url).await 
-        }))
+        .map(|url| tokio::spawn(async move { check_url(&url).await }))
         .buffer_unordered(PARALLEL_REQUESTS);
 
     let valid_urls = HashSet::new();
@@ -109,25 +111,51 @@ async fn main() -> std::io::Result<()> {
         invalid_urls: HashSet<String>,
     }
 
-    let UrlSets { valid_urls, invalid_urls } = results
-        .fold(UrlSets{ valid_urls, invalid_urls }, |mut acc, result| async {
-            let UrlSets { valid_urls, invalid_urls } = &mut acc;
-            match result {
-                Ok(checked) => {
-                    if checked.is_valid {
-                        valid_urls.insert(checked.url.clone());
-                    } else {
-                        invalid_urls.insert(checked.url.clone());
+    let UrlSets {
+        valid_urls,
+        invalid_urls,
+    } = results
+        .fold(
+            UrlSets {
+                valid_urls,
+                invalid_urls,
+            },
+            |mut acc, result| async {
+                let UrlSets {
+                    valid_urls,
+                    invalid_urls,
+                } = &mut acc;
+
+                match result {
+                    Ok(checked) => {
+                        if checked.is_valid {
+                            valid_urls.insert(checked.url);
+                        } else {
+                            invalid_urls.insert(checked.url);
+                        }
                     }
-                },
-                Err(e) => eprintln!("Got a tokio::JoinError: {}", e),
-            }
-            acc
-        })
+                    Err(e) => eprintln!("Got a tokio::JoinError: {}", e),
+                }
+                acc
+            },
+        )
         .await;
 
-    println!("valid urls:\n{}", valid_urls.iter().sorted().dedup().join("\n"));
-    println!("invalid urls:\n{}", invalid_urls.iter().sorted().dedup().join("\n"));
+    let mut output_file = File::create("output.txt")?;
+    output_file.write_all(
+        format!(
+            "valid urls:\n{}\n\ninvalid urls:\n{}",
+            valid_urls.iter().sorted().dedup().join("\n"),
+            invalid_urls.iter().sorted().dedup().join("\n")
+        )
+        .as_bytes(),
+    )?;
+
+    println!(
+        "valid urls:\n{}\n\ninvalid urls:\n{}",
+        valid_urls.iter().sorted().dedup().join("\n"),
+        invalid_urls.iter().sorted().dedup().join("\n")
+    );
 
     Ok(())
 }
@@ -168,77 +196,3 @@ mod tests {
         );
     }
 }
-
-
-/*
-
-#[tokio::main]
-async fn main() -> std::io::Result<()> {
-    let mut file = File::open("../../job-links.txt")?;
-    let mut contents = String::new();
-    file.read_to_string(&mut contents)?;
-    let urls = contents
-        .split('\n')
-        .into_iter()
-        .map(|x| x.trim())
-        .filter(|x| !x.is_empty())
-        .unique()
-        .collect::<Vec<&str>>();
-
-    let url_status_list = join_all(urls.iter().map(|url| check_url(url)).collect::<Vec<_>>()).await;
-
-    let mut valid_urls = HashSet::new();
-    let mut invalid_urls = HashSet::new();
-
-    url_status_list.iter().for_each(|x| {
-        if x.is_valid {
-            valid_urls.insert(x.url.clone());
-        } else {
-            invalid_urls.insert(x.url.clone());
-        }
-    });
-
-    println!("valid urls:\n{}", valid_urls.iter().join("\n"));
-    println!("invalid urls:\n{}", invalid_urls.iter().join("\n"));
-
-    Ok(())
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_chop_url() {
-        assert_eq!(chop_url("https://www.google.com"), "google.com");
-        assert_eq!(chop_url("https://www.google.com/"), "google.com/");
-        assert_eq!(
-            chop_url("https://www.google.com/search?q=rust&p=1"),
-            "google.com/search?q=rust&p=1"
-        );
-    }
-
-    #[test]
-    fn test_build_url_variations() {
-        assert_eq!(
-            build_url_variations("https://www.google.com"),
-            vec![
-                "https://google.com",
-                "http://google.com",
-                "https://www.google.com",
-                "http://www.google.com",
-            ]
-        );
-        assert_eq!(
-            build_url_variations("https://www.google.com/search?q=rust&p=1"),
-            vec![
-                "https://google.com/search?q=rust&p=1",
-                "http://google.com/search?q=rust&p=1",
-                "https://www.google.com/search?q=rust&p=1",
-                "http://www.google.com/search?q=rust&p=1",
-            ]
-        );
-    }
-}
-
-*/
