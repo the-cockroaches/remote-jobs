@@ -8,6 +8,7 @@ use std::collections::HashSet;
 use std::fs::File;
 use std::io::prelude::*;
 use std::ops::Deref;
+use std::sync::{Arc, Mutex};
 use std::time::Duration;
 use std::time::Instant;
 
@@ -45,22 +46,28 @@ fn build_url_variations(url: &str) -> Vec<String> {
 async fn hit_url<'a>(url: &str) -> Result<String, reqwest::Error> {
     println!("hitting {}", url);
     let now = Instant::now();
-    let url_local = url.to_owned();
+    let url_local = Arc::new(Mutex::new(url.to_owned()));
     let client = Client::builder()
-        .redirect(Policy::custom(move |attempt| {
-            println!(
-                "redirecting to {} from {}",
-                attempt.url().to_string(), // TODO: use attempt url as return?
-                url_local
-            );
-            attempt.follow()
+        .redirect(Policy::custom({
+            let url_local = Arc::clone(&url_local);
+            move |attempt| {
+                let new_url = attempt.url().to_string();
+                println!(
+                    "redirecting to {} from {}",
+                    attempt.url().to_string(), // TODO: use attempt url as return?
+                    url_local.lock().unwrap().as_str()
+                );
+                *url_local.lock().unwrap() = new_url;
+                attempt.follow()
+            }
         }))
         .timeout(Duration::from_secs(120))
         .build()?;
 
     client.get(url).send().await?;
     println!("{} secs for {}", now.elapsed().as_secs(), url);
-    Ok(url.to_owned())
+    let final_url = url_local.lock().unwrap().to_owned();
+    Ok(final_url)
 }
 
 struct CheckedUrl {
@@ -71,11 +78,10 @@ struct CheckedUrl {
 async fn check_url(url: &str) -> CheckedUrl {
     let variations = build_url_variations(url);
     for variation in variations {
-        let result = hit_url(&variation).await;
-        if result.is_ok() {
+        if let Ok(final_url) =  hit_url(&variation).await {
             return CheckedUrl {
                 is_valid: true,
-                url: variation,
+                url: final_url,
             };
         }
     }
