@@ -3,26 +3,32 @@ use itertools::Itertools;
 use regex::Regex;
 use reqwest::redirect::Policy;
 use reqwest::Client;
+use std::borrow::Cow;
 use std::collections::HashSet;
 use std::fs::File;
 use std::io::prelude::*;
+use std::ops::Deref;
 use std::time::Duration;
 use std::time::Instant;
 
 const PARALLEL_REQUESTS: usize = 10;
 
-fn chop_url(url: &str) -> String {
-    let re = Regex::new(r"(https?)://(www\.)?(.+)").unwrap();
-    let caps = re.captures(url);
-    if let Some(caps) = caps {
-        caps.get(3).unwrap().as_str().to_string()
-    } else {
-        url.to_string()
-    }
+fn remove_url_protocol(url: &str) -> Cow<'_, str> {
+    let re = Regex::new(r"^(https?)://").unwrap();
+    re.replace(url, "")
+}
+
+fn remove_www(url: &str) -> Cow<'_, str> {
+    let re = Regex::new(r"(www\.)").unwrap();
+    re.replace(url, "")
+}
+
+fn sanitize_url(url: &str) -> String {
+    remove_www(remove_url_protocol(url).deref()).into_owned()
 }
 
 fn build_url_variations(url: &str) -> Vec<String> {
-    let partial_url = chop_url(url);
+    let partial_url = sanitize_url(url);
     // NOTE: order matters here
     let mut variations = vec![
         format!("https://{}", partial_url),
@@ -165,11 +171,11 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_chop_url() {
-        assert_eq!(chop_url("https://www.google.com"), "google.com");
-        assert_eq!(chop_url("https://www.google.com/"), "google.com/");
+    fn test_sanitize_url() {
+        assert_eq!(sanitize_url("https://www.google.com"), "google.com");
+        assert_eq!(sanitize_url("https://www.google.com/"), "google.com/");
         assert_eq!(
-            chop_url("https://www.google.com/search?q=rust&p=1"),
+            sanitize_url("https://www.google.com/search?q=rust&p=1"),
             "google.com/search?q=rust&p=1"
         );
     }
@@ -180,8 +186,8 @@ mod tests {
             build_url_variations("https://drupaljedi.com"),
             vec![
                 "https://drupaljedi.com",
-                "http://drupaljedi.com",
                 "https://www.drupaljedi.com",
+                "http://drupaljedi.com",
                 "http://www.drupaljedi.com",
             ]
         );
@@ -189,8 +195,8 @@ mod tests {
             build_url_variations("https://www.google.com/search?q=rust&p=1"),
             vec![
                 "https://google.com/search?q=rust&p=1",
-                "http://google.com/search?q=rust&p=1",
                 "https://www.google.com/search?q=rust&p=1",
+                "http://google.com/search?q=rust&p=1",
                 "http://www.google.com/search?q=rust&p=1",
             ]
         );
