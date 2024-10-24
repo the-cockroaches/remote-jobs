@@ -99,7 +99,6 @@ https://blog.kraken.com
 https://bloomtech.com
 https://bluespark.com
 https://bluetc.es
-https://bmat.bamboohr.com
 https://boards.greenhouse.io
 https://bocada.com
 https://boldare.com
@@ -283,12 +282,12 @@ https://firstbase.com
 https://fivexl.io
 https://flatworld.co
 https://flexera.com
-https://flexjobs.com
+https://flexjobs.comfr
 https://flightaware.com
 https://flywire.com
 https://focusnetworks.com.br
 https://fohandboh.com
-https://forcemanager.bamboohr.com
+https://forcemanager.com
 https://form3.tech
 https://formstack.com
 https://founderblocks.io
@@ -442,7 +441,7 @@ https://jitbit.com
 https://jitera.com
 https://job-boards.eu.greenhouse.io
 https://job-boards.greenhouse.io
-https://jobandtalent.bamboohr.com
+https://jobandtalent.com
 https://jobhunnt.com
 https://jobhunt.work
 https://jobsity.com
@@ -866,7 +865,7 @@ https://virtasant.com
 https://virtualvocations.com
 https://vista.com
 https://vitaance.jobs.personio.com
-https://vizzuality.bamboohr.com
+https://vizzuality.com
 https://vmware.com
 https://voiio.io
 https://volcanicinternet.com
@@ -905,7 +904,7 @@ https://workana.com
 https://working-nomads.com
 https://workingnomads.com
 https://worky.com
-https://worldmobile.bamboohr.com
+https://worldmobile.io
 https://wp-media.me
 https://x-team.com
 https://xapobank.com
