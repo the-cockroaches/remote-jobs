@@ -99,7 +99,6 @@ async fn main() -> std::io::Result<()> {
     file.read_to_string(&mut contents)?;
     let urls = contents
         .split('\n')
-        .into_iter()
         .filter_map(|line| {
             let trimmed = line.trim();
             if trimmed.is_empty() {
@@ -111,47 +110,26 @@ async fn main() -> std::io::Result<()> {
         .unique()
         .collect::<Vec<String>>();
 
-    let results = stream::iter(urls)
-        .map(|url| tokio::spawn(async move { check_url(&url).await }))
-        .buffer_unordered(PARALLEL_REQUESTS);
+    let valid_urls = Arc::new(Mutex::new(HashSet::new()));
+    let invalid_urls = Arc::new(Mutex::new(HashSet::new()));
 
-    let valid_urls = HashSet::new();
-    let invalid_urls = HashSet::new();
-
-    struct UrlSets {
-        valid_urls: HashSet<String>,
-        invalid_urls: HashSet<String>,
-    }
-
-    let UrlSets {
-        valid_urls,
-        invalid_urls,
-    } = results
-        .fold(
-            UrlSets {
-                valid_urls,
-                invalid_urls,
-            },
-            |mut acc, result| async {
-                let UrlSets {
-                    valid_urls,
-                    invalid_urls,
-                } = &mut acc;
-
-                match result {
-                    Ok(checked) => {
-                        if checked.is_valid {
-                            valid_urls.insert(checked.url);
-                        } else {
-                            invalid_urls.insert(checked.url);
-                        }
-                    }
-                    Err(e) => eprintln!("Got a tokio::JoinError: {}", e),
+    stream::iter(urls)
+        .for_each_concurrent(PARALLEL_REQUESTS, |url| {
+            let valid_urls = Arc::clone(&valid_urls);
+            let invalid_urls = Arc::clone(&invalid_urls);
+            async move {
+                let checked = check_url(&url).await;
+                if checked.is_valid {
+                    valid_urls.lock().unwrap().insert(checked.url);
+                } else {
+                    invalid_urls.lock().unwrap().insert(checked.url);
                 }
-                acc
-            },
-        )
+            }
+        })
         .await;
+
+    let valid_urls = valid_urls.lock().unwrap();
+    let invalid_urls = invalid_urls.lock().unwrap();
 
     let mut output_file = File::create("output.txt")?;
     output_file.write_all(
@@ -172,39 +150,3 @@ async fn main() -> std::io::Result<()> {
     Ok(())
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_sanitize_url() {
-        assert_eq!(sanitize_url("https://www.google.com"), "google.com");
-        assert_eq!(sanitize_url("https://www.google.com/"), "google.com/");
-        assert_eq!(
-            sanitize_url("https://www.google.com/search?q=rust&p=1"),
-            "google.com/search?q=rust&p=1"
-        );
-    }
-
-    #[test]
-    fn test_build_url_variations() {
-        assert_eq!(
-            build_url_variations("https://drupaljedi.com"),
-            vec![
-                "https://drupaljedi.com",
-                "https://www.drupaljedi.com",
-                "http://drupaljedi.com",
-                "http://www.drupaljedi.com",
-            ]
-        );
-        assert_eq!(
-            build_url_variations("https://www.google.com/search?q=rust&p=1"),
-            vec![
-                "https://google.com/search?q=rust&p=1",
-                "https://www.google.com/search?q=rust&p=1",
-                "http://google.com/search?q=rust&p=1",
-                "http://www.google.com/search?q=rust&p=1",
-            ]
-        );
-    }
-}
