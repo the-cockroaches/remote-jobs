@@ -43,9 +43,7 @@ https://anomali.com
 https://apartmenttherapy.com
 https://apica.io
 https://aplanet.org
-https://app.shawandpartners.com
 https://appinio.com
-https://apply.workable.com
 https://appstractor.com
 https://appwrite.io
 https://arbeitnow.com
@@ -84,6 +82,7 @@ https://beenverified.com
 https://beon.tech
 https://bergamot.io
 https://bestpractical.com
+https://bestsecret.com
 https://betablegroup.com
 https://betapeak.com
 https://betterup.com
@@ -185,6 +184,7 @@ https://cryptojobslist.com
 https://cueup.io
 https://cuez.app
 https://customer.io
+https://cvshealth.com
 https://cybercoders.com
 https://cyberjobhunt.in
 https://cyberwhale.tech
@@ -225,6 +225,7 @@ https://doist.com
 https://donestreet.com
 https://dribbble.com
 https://dronedeploy.com
+https://drupal.org
 https://drupaljedi.com
 https://dsbrigade.com
 https://duckduckgo.com
@@ -396,6 +397,7 @@ https://hudl.com
 https://hugo.events
 https://humanmade.com
 https://husldigital.com
+https://hygraph.com
 https://hypergiant.com
 https://hyperiondev.com
 https://hyqoo.com
@@ -443,20 +445,9 @@ https://job-boards.greenhouse.io
 https://jobandtalent.bamboohr.com
 https://jobhunnt.com
 https://jobhunt.work
-https://jobs.bestsecret.com
-https://jobs.cvshealth.com
-https://jobs.drupal.org
-https://jobs.hygraph.com
-https://jobs.jobvite.com
-https://jobs.landbot.io
-https://jobs.lever.co
-https://jobs.lingokids.com
-https://jobs.pccomponentes.com
-https://jobs.vista.com
-https://jobs.yougov.com
-https://jobs.zendesk.com
 https://jobsity.com
 https://jobspresso.co
+https://jobvite.com
 https://journy.io
 https://joyent.com
 https://jupiterone.com
@@ -482,6 +473,7 @@ https://kuali.co
 https://labelbox.com
 https://labs.madisoft.it
 https://lambertlabs.com
+https://landbot.io
 https://landing.jobs
 https://larajobs.com
 https://leadershipsuccess.co
@@ -495,6 +487,7 @@ https://lightbend.com
 https://linaro.org
 https://lincolnloop.com
 https://linepluscorp.com
+https://lingokids.com
 https://link11.com
 https://linuxfoundation.org
 https://lionsher.com
@@ -615,6 +608,7 @@ https://payfit.com
 https://paylocity.com
 https://payplug.com
 https://payscale.com
+https://pccomponentes.com
 https://peach.me
 https://people-doc.com
 https://peoplelogic.ai
@@ -729,6 +723,7 @@ https://serpapi.com
 https://serverdensity.com
 https://servmask.com
 https://shareup.app
+https://shawandpartners.com
 https://shopery.com
 https://shopify.com
 https://shortcut.com
@@ -869,6 +864,7 @@ https://veryfi.com
 https://vigil.global
 https://virtasant.com
 https://virtualvocations.com
+https://vista.com
 https://vitaance.jobs.personio.com
 https://vizzuality.bamboohr.com
 https://vmware.com
@@ -903,6 +899,7 @@ https://willdom.com
 https://wipro.com
 https://wizeline.com
 https://wolfram.com
+https://workable.com
 https://workaline.com
 https://workana.com
 https://working-nomads.com
@@ -921,9 +918,11 @@ https://yodo1.com
 https://yokoco.com
 https://yonder.io
 https://youcanbook.me
+https://yougov.com
 https://z1.digital
 https://zapier.com
 https://zeit.io
+https://zendesk.com
 https://zignaly.com
 https://zip.co
 https://zipdev.com
