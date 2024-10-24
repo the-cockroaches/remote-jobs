@@ -1,4 +1,4 @@
-use futures::{stream, StreamExt};
+use futures::{future::join_all, stream, StreamExt};
 use itertools::Itertools;
 use regex::Regex;
 use reqwest::redirect::Policy;
@@ -113,20 +113,22 @@ async fn main() -> std::io::Result<()> {
     let valid_urls = Arc::new(Mutex::new(HashSet::new()));
     let invalid_urls = Arc::new(Mutex::new(HashSet::new()));
 
-    stream::iter(urls)
-        .for_each_concurrent(PARALLEL_REQUESTS, |url| {
-            let valid_urls = Arc::clone(&valid_urls);
-            let invalid_urls = Arc::clone(&invalid_urls);
-            async move {
-                let checked = check_url(&url).await;
-                if checked.is_valid {
-                    valid_urls.lock().unwrap().insert(checked.url);
-                } else {
-                    invalid_urls.lock().unwrap().insert(checked.url);
-                }
+    // Create a vector of futures (tasks) to execute in parallel
+    let tasks = urls.into_iter().map(|url| {
+        let valid_urls = Arc::clone(&valid_urls);
+        let invalid_urls = Arc::clone(&invalid_urls);
+        tokio::spawn(async move {
+            let checked = check_url(&url).await;
+            if checked.is_valid {
+                valid_urls.lock().unwrap().insert(checked.url);
+            } else {
+                invalid_urls.lock().unwrap().insert(checked.url);
             }
         })
-        .await;
+    });
+
+    // Run all the tasks in parallel (like Promise.all)
+    join_all(tasks).await;
 
     let valid_urls = valid_urls.lock().unwrap();
     let invalid_urls = invalid_urls.lock().unwrap();
