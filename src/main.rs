@@ -113,14 +113,14 @@ async fn main() -> std::io::Result<()> {
 
     // Create a vector of futures (tasks) to execute in parallel
     let tasks = urls.into_iter().map(|url| {
-        let valid_urls = Arc::clone(&valid_urls);
-        let invalid_urls = Arc::clone(&invalid_urls);
+        let valid_urls_pointer = Arc::clone(&valid_urls);
+        let invalid_urls_pointer = Arc::clone(&invalid_urls);
         tokio::spawn(async move {
             let checked = check_url(&url).await;
             if checked.is_valid {
-                valid_urls.lock().unwrap().insert(checked.url);
+                valid_urls_pointer.lock().unwrap().insert(checked.url);
             } else {
-                invalid_urls.lock().unwrap().insert(checked.url);
+                invalid_urls_pointer.lock().unwrap().insert(checked.url);
             }
         })
     });
