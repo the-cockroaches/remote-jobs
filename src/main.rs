@@ -1,4 +1,4 @@
-use futures::{future::join_all, stream, StreamExt};
+use futures::future::join_all;
 use itertools::Itertools;
 use regex::Regex;
 use reqwest::redirect::Policy;
@@ -11,8 +11,6 @@ use std::ops::Deref;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 use std::time::Instant;
-
-const PARALLEL_REQUESTS: usize = 10;
 
 fn remove_url_protocol(url: &str) -> Cow<'_, str> {
     let re = Regex::new(r"^(https?)://").unwrap();
