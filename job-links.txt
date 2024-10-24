@@ -177,6 +177,7 @@ https://cryptojobslist.com/remote
 https://cueup.io/
 https://customer.io
 https://customer.io/careers/
+https://cyberjobhunt.in/
 https://cyberwhale.tech
 https://dailyremote.com
 https://dailyremote.com/
@@ -184,11 +185,13 @@ https://dalenys.com/
 https://dappradar.com/
 https://darecode.com/
 https://dashboardhub.io
+https://dataaxy.com
 https://datica.com/
 https://delighted.com
 https://delitbee.com/empleo
 https://designcode.io/
 https://dev.pro/
+https://devemploy.com
 https://devrank.co/
 https://devready.io/dev.html
 https://devsquad.com
@@ -238,6 +241,7 @@ https://fohandboh.com/
 https://forcemanager.bamboohr.com/jobs/
 https://form3.tech/careers
 https://fourkitchens.com/
+https://freel.ca
 https://fuelmade.com/
 https://fullfabric.com/
 https://fullstackjob.com/jobs/remote-ok
@@ -260,7 +264,9 @@ https://github.com/about/careers
 https://github.com/blarlo/remote-job-offers
 https://github.com/dewocracy/careers
 https://github.com/diegopolido/remote-jobs-compilation-of-compilation
+https://github.com/jessicard/remote-jobs
 https://github.com/lerrua/remote-jobs-brazil
+https://github.com/remote-es/remotes
 https://github.com/yanirs/established-remote
 https://gitprime.com/
 https://glennwebsitedesign.com/
@@ -321,6 +327,7 @@ https://ipinfo.io/
 https://iruuza-inc.com/
 https://iwantmyname.com/
 https://jacksonriver.com/
+https://javaprohire.com/
 https://jaya.tech/
 https://jobandtalent.bamboohr.com/jobs/
 https://jobhunt.ai/machinelearning-remote-jobs.html
@@ -471,14 +478,17 @@ https://remote.com/search
 https://remote.works-hub.com
 https://remote3.co/
 https://remote4me.com/
+https://remotebackendjobs.com/
 https://remotebase.com
 https://remotecrew.io
 https://remotees.com/
+https://remotefrontendjobs.com/
 https://remotegamejobs.com/
 https://remotejobs.lat/
 https://remoteleaf.com
 https://remoteok.io/
 https://remotepeople.io/
+https://remotewide.co/
 https://remotive.io/
 https://renofi.com/
 https://rent.spotahome.com/work-with-us
@@ -568,6 +578,7 @@ https://turing.com/
 https://ubiminds.com/en-us/
 https://ubiminds.com/en-us/dev-work/
 https://uhurunetwork.com/
+https://uiuxdesignerjobs.com/remote-ui-ux-designer-jobs/
 https://untalent.org/jobs/home-based
 https://upper.co/
 https://upstack.co/
@@ -966,6 +977,7 @@ https://www.privacycloud.com/en
 https://www.progress-engine.com/en
 https://www.publisherdesk.com
 https://www.pwc.com
+https://www.pyjobs.com/?remoteLevel[0]=1&remoteLevel[1]=2
 https://www.pythian.com/
 https://www.quintoandar.com.br/
 https://www.quora.com
@@ -1066,6 +1078,7 @@ https://www.upwork.com
 https://www.upwork.com/
 https://www.upworthy.com/
 https://www.usebraintrust.com/how-it-works-for-talent
+https://www.useweb3.xyz/jobs
 https://www.ushahidi.com
 https://www.uship.com
 https://www.valimail.com/
@@ -1119,3 +1132,4 @@ https://zeit.io/
 https://zignaly.io/
 https://zip.co/us/
 https://zipdev.com/careers/
+https://zuhausejobs.com
