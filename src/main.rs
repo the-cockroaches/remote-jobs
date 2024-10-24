@@ -125,7 +125,6 @@ async fn main() -> std::io::Result<()> {
         })
     });
 
-    // Run all the tasks in parallel (like Promise.all)
     join_all(tasks).await;
 
     let valid_urls = valid_urls.lock().unwrap();
