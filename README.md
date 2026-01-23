@@ -12,8 +12,10 @@ https://gun.io/
 https://teamit.com/  
 
 https://remoteyeah.com
+
 http://achievetestprep.com/careers  
 http://aivitex.de/  
+https://andela.com/  
 https://animalz.co/join-us/  
 http://betterup.co  
 https://bill.com/about-us/jobs  
@@ -482,6 +484,7 @@ https://hubstaff.com/jobs
 https://hudl.com/  
 https://hugo.events  
 https://husldigital.com  
+https://himalayas.app/jobs
 https://hypergiant.com/contact/  
 https://hyperiondev.com/jobs  
 https://hypothes.is  
