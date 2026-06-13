@@ -1059,6 +1059,7 @@ https://zipdev.com/careers/
 https://ziprecruiter.com/Jobs/Remote  
 https://zup.com.br/  
 https://zyte.com/jobs/  
+https://www.foundrole.com/remote-jobs  
 
 ## LinkedIn Links
 
