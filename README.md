@@ -643,6 +643,7 @@ https://mailerlite.com
 https://mailerlite.com/  
 https://mailtrack.io/blog/tag/jobs/  
 https://malt.com/  
+https://maneki.work/  
 https://manifold.co  
 https://mapbox.com/  
 https://mapillary.com/  
