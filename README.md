@@ -547,6 +547,7 @@ https://jobs.lingokids.com/
 https://jobs.nc43tech.com/#jobs  
 https://jobs.vistaprint.com/Vistaprint/go/Barcelona%2C-Spain/7789500/  
 https://jobs.yougov.com/jobs  
+https://jobsincrypto.net/  
 https://jobsity.com/  
 https://jobspresso.co/  
 https://journy.io  
